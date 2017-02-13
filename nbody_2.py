@@ -1,8 +1,4 @@
 
-# coding: utf-8
-
-# In[35]:
-
 """
     N-body simulation.
     Optimization version: nbody_2.py
@@ -149,11 +145,4 @@ def nbody(loops, reference, iterations):
         print(report_energy())
 
 if __name__ == '__main__':
-    get_ipython().magic(u"timeit nbody(100, 'sun', 20000)")
-
-
-
-# In[ ]:
-
-
-
+    print(timeit.timeit("nbody(100, 'sun', 20000)", setup="from __main__ import nbody", number=10))
