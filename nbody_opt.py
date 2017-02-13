@@ -134,8 +134,6 @@ def nbody(loops, reference, iterations):
     advance(BODIES,0.01,loops,iterations)
 
 if __name__ == '__main__':
-    get_ipython().magic(u"timeit nbody(100, 'sun', 20000)")
-
-
+    print(timeit.timeit("nbody(100, 'sun', 20000)", setup="from __main__ import nbody", number=10))
 
 
