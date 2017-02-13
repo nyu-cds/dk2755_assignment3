@@ -4,7 +4,7 @@
     Optimization version: nbody_3.py
     In this version, used local rather than global variables.
     This change decreased the execution time of the script from (92s) to (85.2s) 
-    The version made the most third most improvement
+    This version made the third most improvement
 """
 import timeit    
 
