@@ -10,12 +10,13 @@ import timeit
 import itertools
     
 def update_vs(v1, v2, dt, dx, dy, dz, m1, m2):
-    v1[0] -= dx * m2 * dt * ((dx * dx + dy * dy + dz * dz) ** (-1.5)) 
-    v1[1] -= dy * m2 * dt * ((dx * dx + dy * dy + dz * dz) ** (-1.5))
-    v1[2] -= dz * m2 * dt * ((dx * dx + dy * dy + dz * dz) ** (-1.5))
-    v2[0] += dx * m1 * dt * ((dx * dx + dy * dy + dz * dz) ** (-1.5))
-    v2[1] += dy * m1 * dt * ((dx * dx + dy * dy + dz * dz) ** (-1.5))
-    v2[2] += dz * m1 * dt * ((dx * dx + dy * dy + dz * dz) ** (-1.5))
+    iVal = dt * ((dx * dx + dy * dy + dz * dz) ** (-1.5))
+    v1[0] -= dx * m2 * iVal
+    v1[1] -= dy * m2 * iVal
+    v1[2] -= dz * m2 * iVal
+    v2[0] += dx * m1 * iVal
+    v2[1] += dy * m1 * iVal
+    v2[2] += dz * m1 * iVal
     
 
 def advance(BODIES,dt,loops,iterations):
