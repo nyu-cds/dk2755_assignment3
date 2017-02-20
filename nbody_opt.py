@@ -65,8 +65,7 @@ def offset_momentum(BODIES, ref, px=0.0, py=0.0, pz=0.0):
         ref is the body in the center of the system
         offset values from this reference
     '''
-    for body in BODIES.keys():
-        (r, [vx, vy, vz], m) = BODIES[body]
+    for (body, (r, [vx, vy, vz], m)) in BODIES.items():
         px -= vx * m
         py -= vy * m
         pz -= vz * m
