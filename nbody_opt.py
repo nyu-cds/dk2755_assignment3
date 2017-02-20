@@ -28,7 +28,6 @@ def advance(BODIES,dt,loops,iterations):
     bodies_pair = list(itertools.combinations(BODIES.keys(), 2))
     
     for _ in range(loops):
-        report_energy(BODIES, bodies_pair)
         for _ in range(iterations):
             for (body1, body2) in bodies_pair:
                 ([x1, y1, z1], v1, m1) = BODIES[body1]
