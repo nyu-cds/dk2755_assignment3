@@ -1,21 +1,12 @@
-
-# coding: utf-8
-
-# In[18]:
-
-get_ipython().magic(u'load_ext Cython')
-import pyximport
-pyximport.install(reload_support=True)
-%%cython
-
-
-# In[16]:
-
 """
     N-body simulation.
     This is the final optimized script   
     The final changes decreased the execution time of the script from (92s) to (21.8s) 
     The relative speedup(R)= (time to run original version) / (time to run optimized version)  = 92/21.8 = 4.22
+
+    The execution time for the Cython version = 7.134s
+    So, the relative speedup from the earlier optimized version = 21.8/7.134 = 3.0557
+
 """
     
 import timeit    
@@ -38,7 +29,7 @@ cdef void advance(dict BODIES,float dt,int loops,int iterations):
     '''
     
     # Get BODIES pair
-    list bodies_pair = list(itertools.combinations(BODIES.keys(), 2))
+    cdef list bodies_pair = list(itertools.combinations(BODIES.keys(), 2))
     
     for _ in range(loops):
         for _ in range(iterations):
@@ -143,11 +134,7 @@ cdef void nbody(int loops, str reference, int iterations):
     advance(BODIES,0.01,loops,iterations)
 
 if __name__ == '__main__':
-    #print(timeit.timeit("nbody(100, 'sun', 20000)", setup="from __main__ import nbody", number=10))
-    print(timeit.timeit("nbody(10, 'sun', 200)", setup="from __main__ import nbody", number=1))
-
-
-# In[ ]:
+    print(timeit.timeit("nbody(100, 'sun', 20000)", setup="from __main__ import nbody", number=1))
 
 
 
