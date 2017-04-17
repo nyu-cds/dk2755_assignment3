@@ -14,7 +14,6 @@ comm = MPI.COMM_WORLD  #Init communicator
 rank = comm.Get_rank() #Get process rank
 num_proc = comm.Get_size() #Get total number of processes
 
-print("Number of processes: ", num_proc)
 
 if rank == 0:
     while(1):
@@ -38,8 +37,11 @@ if rank == 0:
             
 else:
     recv_val = comm.recv(source=rank-1) #receive the value from the previous process
+    print ("\n Received value from process ", rank-1, " is ", recv_val) 
+    
     recv_val *= rank #multiply the received value by it's rank
-        
+    print (" Sent value from process ", rank, " is ", recv_val)
+
     if rank == num_proc - 1: 
         comm.send(recv_val, dest=0) #if it's the last process, pass on the mutiplied value to process 0
     else:
