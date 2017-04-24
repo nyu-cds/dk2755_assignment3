@@ -1,3 +1,10 @@
+'''
+This MPI program generates 10000 random numbers between the range -100 and 10000. The process 0 splits the dataset into different subsets based on the number of processes.
+The process 0 then sents the subsets to other processes each of which sorts it's subset. Once done, the sorted subsets are sent back to process 0 which then cancatenates
+the sorted subsets to produce the final completed sorted numbers. 
+
+'''
+
 
 import numpy as np
 from mpi4py import MPI
